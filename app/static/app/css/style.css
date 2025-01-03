@@ -1,0 +1,68 @@
+.owl-carousel .item{
+ /* border: 1px solid black; */
+ font-size: 24px;
+ text-align: center;
+ margin-top: 20px;;
+}
+
+.owl-next{
+ float:right;
+}
+.owl-prev{
+ float:left;
+}
+.owl-prev span{
+ font-size: 24px;
+ font-weight: bold;
+}
+.owl-next span{
+ font-size: 24px;
+ font-weight: bold;
+}
+/* Banner Slider Images */
+.carousel-item img {
+    height: 500px;                /* Fixed height for uniformity */
+    object-fit: cover;            /* Ensures images are cropped to fit without distortion */
+    filter: brightness(80%);      /* Darkens images slightly for better text visibility */
+    border-radius: 8px;           /* Adds rounded corners to the slider images */
+}
+
+/* Product Images */
+.item img {
+    width: 100%;                  /* Makes images responsive within the container */
+    height: 200px;                /* Consistent height for product images */
+    object-fit: cover;            /* Maintains aspect ratio and crops if needed */
+    border-radius: 8px;           /* Rounded corners for a modern look */
+    transition: transform 0.3s;   /* Smooth scaling effect */
+}
+
+.item:hover img {
+    transform: scale(1.05);       /* Slight zoom on hover */
+}
+
+/* Payment Info Images */
+.card-body img {
+    max-width: 70%;               /* Sets max width for images in cards */
+    height: auto;                 /* Keeps images responsive */
+    object-fit: contain;          /* Prevents cropping to show full image */
+    margin: 0 auto;               /* Centers image within the card */
+    border-radius: 8px;           /* Adds rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds subtle shadow for depth */
+    transition: transform 0.2s;   /* Smooth scaling effect */
+}
+
+.card:hover .card-body img {
+    transform: scale(1.1);        /* Slight zoom effect on card hover */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .carousel-item img {
+        height: 300px;            /* Adjusts banner image height for smaller screens */
+    }
+
+    .item img {
+        height: 150px;            /* Reduces product image height on mobile */
+    }
+}
+

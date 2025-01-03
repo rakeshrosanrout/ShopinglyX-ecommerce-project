@@ -1,0 +1,69 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block extra_css %}
+<style>
+    .product-card {
+        text-decoration: none;
+        color: inherit;
+    }
+    .product-img {
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        object-fit: cover;
+    }
+    .card-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+    .card-text .text-muted {
+        font-size: 0.9rem;
+    }
+    .card {
+        transition: transform 0.2s;
+    }
+    .card:hover {
+        transform: scale(1.05);
+    }
+</style>
+{% endblock extra_css %}
+
+{% block main-content %}
+<div class="container my-5">
+    <div class="row">
+        <!-- Sidebar for Category Filters -->
+        <div class="col-sm-3">
+            <div class="list-group">
+                <a href="{% url 'mobile' %}" class="list-group-item list-group-item-action" aria-current="true">All mobile</a>
+                <a href="{% url 'mobile' 'Redmi'  %}" class="list-group-item list-group-item-action" aria-current="true">Redmi</a>
+                <a href="{% url 'mobile' 'Realme' %}" class="list-group-item list-group-item-action" aria-current="true">Realme</a>
+                <a href="{% url 'mobile' 'below' %}" class="list-group-item list-group-item-action" aria-current="true">below 10000</a>
+                <a href="{% url 'mobile' 'above' %}" class="list-group-item list-group-item-action" aria-current="true">above 10000</a>
+            </div>
+        </div>
+        <!-- Product Display Section -->
+        <div class="col-sm-9">
+            <div class="row">
+                {% for product in mobiles %}
+                <div class="col-md-4 col-sm-6 mb-4 text-center">
+                    <a href="{% url 'product-detail' product.id %}" class="product-card">
+                        <div class="card shadow-sm">
+                            <img src="{{ product.product_image.url }}" class="card-img-top product-img" alt="{{ product.title }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ product.title }}</h5>
+                                <p class="card-text">
+                                    <span class="text-danger fw-bold">₹{{ product.discounted_price }}</span>
+                                    <small class="text-muted text-decoration-line-through">₹{{ product.selling_price }}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main-content %}
+

@@ -1,0 +1,81 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block extra_css %}
+<style>
+    .product-card {
+        text-decoration: none;
+        color: inherit;
+    }
+    .card {
+        height: 100%; /* Ensures cards are of equal height */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover transition */
+        border: none;
+    }
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .product-img {
+        width: 100%;
+        height: 250px; /* Fixed height for symmetry */
+        object-fit: cover; /* Ensures images fill the space proportionally */
+        border-radius: 5px;
+    }
+    .card-body {
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .card-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-top: 10px;
+        text-align: center;
+    }git remote add origin https://github.com/rakeshrosanrout/ShopinglyX-ecommerce-project.git
+    .card-text .text-muted {
+        font-size: 0.9rem;
+    }
+</style>
+{% endblock extra_css %}
+
+{% block main-content %}
+<div class="container my-5">
+    <div class="row">
+        <!-- Sidebar for Category Filters -->
+        <div class="col-sm-2">
+            <div class="list-group">
+                <a href="{% url 'topwear' %}" class="list-group-item list-group-item-action" aria-current="true">All Products</a>
+                <a href="{% url 'topwear' 'below' %}" class="list-group-item list-group-item-action" aria-current="true">below 500</a>
+                <a href="{% url 'topwear' 'above' %}" class="list-group-item list-group-item-action" aria-current="true">above 500</a>
+            </div>
+        </div>
+        <!-- Product Display Section -->
+        <div class="col-sm-10">
+            <div class="row">
+                {% for product in topwear %}
+                <div class="col-md-4 col-sm-6 mb-4 d-flex">
+                    <a href="{% url 'product-detail' product.id %}" class="product-card w-100">
+                        <div class="card shadow-sm">
+                            <img src="{{ product.product_image.url }}" class="card-img-top product-img" alt="{{ product.title }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ product.title }}</h5>
+                                <p class="card-text">
+                                    <span class="text-danger fw-bold">₹{{ product.discounted_price }}</span>
+                                    <small class="text-muted text-decoration-line-through">₹{{ product.selling_price }}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main-content %}
