@@ -1,0 +1,1 @@
+ShoppinglyX is a Django-based e-commerce platform offering seamless user experiences for online shopping. It features product catalogs, user authentication, shopping carts, and order management, providing a comprehensive solution for modern e-commerce needs.
